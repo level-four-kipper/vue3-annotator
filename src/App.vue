@@ -44,8 +44,8 @@
 </template>
 
 <script lang="ts" setup>
-import { VAnnotator } from "vue3-annotator";
-// import VAnnotator from "./components/VAnnotator.vue";
+// import { VAnnotator } from "vue3-annotator";
+import VAnnotator from "./components/VAnnotator.vue";
 // import { Entity } from "./models/Label/Entity";
 // import { Relation } from "./models/Label/Relation";
 
@@ -189,42 +189,50 @@ const selectedEntities = computed(() => {
 
 // ============================function=====================
 function addEntity(event: Event, startOffset: number, endOffset: number) {
+  console.log(startOffset, endOffset, "startOffset: number, endOffset: number");
+
   entities.value.push({
     id: id,
     startOffset,
     endOffset,
     label: 0,
     user: 0,
+    type: "background",
   });
   id++;
 }
 
 function updateEntity(event: Event, id: number) {
   const entity = entities.value.find((e) => e.id === id);
+  entity.type = "background";
   console.log(JSON.stringify(entity));
   console.log(event);
 }
 
-// function  deleteEntity(entity: Entity) {
-//   data.value.entities = data.value.entities.filter((e) => e.id !== entity.id);
-//   data.value.relations.forEach((r) => {
-//     if (r.fromId === entity.id || r.toId === entity.id) {
-//       deleteRelation(r);
-//     }
-//   });
-// }
+function deleteEntity(entity: Entity) {
+  entities.value = entities.value.filter((e) => e.id !== entity.id);
+  // relations.value.forEach((r) => {
+  //   if (r.fromId === entity.id || r.toId === entity.id) {
+  //     deleteRelation(r);
+  //   }
+  // });
+}
+
 // function  changeText() {
 //   text = "The president Obama came to Japan.";
 //    resetEntity();
 // }
+
 // function   resetEntity() {
 //   data.value.entities = [];
 //   resetRelation();
 // }
+
 // function   changeLabel() {
 //   entityLabels[0].color = "#FF5733";
 //   entityLabels[0].text = "Misc";
 // }
+
 // function   addRelation() {
 //   data.value.relations.push({
 //     id: 1,
@@ -233,16 +241,17 @@ function updateEntity(event: Event, id: number) {
 //     labelId: 1,
 //   });
 // }
+
 // function    updateRelation(event: Event, relation: Relation) {
 //   console.log(relation);
 //   console.log(event);
 // }
-// function   deleteRelation(relation: Relation) {
-//   data.value.relations = data.value.relations.filter((r) => r.id !== relation.id);
-// }
-// function  resetRelation() {
-//   data.value.relations = [];
-// }
+function deleteRelation(relation: Relation) {
+  relations.value = relations.value.filter((r) => r.id !== relation.id);
+}
+function resetRelation() {
+  relations.value = [];
+}
 
 // function   addEntity2(event: Event, startOffset: number, endOffset: number) {
 //   data.value.entities2.push({

@@ -1,5 +1,14 @@
 <template>
-  <line class="background" :x1="_x1" :y1="y" :x2="_x2" :y2="y" :stroke="color" :stroke-width="height" :stroke-opacity="opacity" />
+  <line
+    class="background"
+    :x1="_x1"
+    :y1="y"
+    :x2="_x2"
+    :y2="y"
+    :stroke="color"
+    :stroke-width="height"
+    :stroke-opacity="opacity"
+  />
 </template>
 
 <script setup>
@@ -12,8 +21,7 @@ const props = defineProps({
   },
   y: {
     type: Number,
-    default: -8,
-
+    default: -6,
   },
   height: {
     type: Number,
@@ -21,23 +29,23 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: 'red',
+    default: "red",
   },
   opacity: {
     type: Number,
     default: 0.5,
   },
-})
+});
 
 // =======================computed==================
 const _x1 = computed(() => {
-  const x = props.x1 < props.x2 ? props.x1 : props.x2
-  return x + props.height / 2
-})
+  const x = props.x1 < props.x2 ? props.x1 : props.x2;
+  return x;
+});
 const _x2 = computed(() => {
-  const x = props.x1 < props.x2 ? props.x2 : props.x1
-  return x - props.height / 2
-})
+  const x = props.x1 < props.x2 ? props.x2 : props.x1;
+  return x;
+});
 </script>
 
 <style lang="scss" scoped>
