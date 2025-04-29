@@ -44,9 +44,10 @@
 </template>
 
 <script lang="ts" setup>
-import VAnnotator from "./components/VAnnotator.vue";
-import { Entity } from "./models/Label/Entity";
-import { Relation } from "./models/Label/Relation";
+import { VAnnotator } from "vue3-annotator";
+// import VAnnotator from "./components/VAnnotator.vue";
+// import { Entity } from "./models/Label/Entity";
+// import { Relation } from "./models/Label/Relation";
 
 interface EntityI {
   id: number;
